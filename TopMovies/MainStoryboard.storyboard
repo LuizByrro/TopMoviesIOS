@@ -45,6 +45,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="jdY-Mc-s2k" firstAttribute="leading" secondItem="CCE-rx-KS8" secondAttribute="leading" type="default" id="A6x-SG-cPZ"/>
                                     <constraint firstItem="jdY-Mc-s2k" firstAttribute="trailing" secondItem="CCE-rx-KS8" secondAttribute="trailing" type="default" id="DZ2-ow-JJf"/>
@@ -71,6 +72,9 @@
                                     <state key="highlighted">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="LoadMovies" destination="5yv-Hk-gAG" eventType="touchUpInside" id="caM-Of-19W"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
@@ -98,6 +102,9 @@
         </class>
         <class className="PosterViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PosterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="LoadMovies"/>
+            </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilmeInfo.h"
+#import "AFImageRequestOperation.h"
 
 @interface PosterViewController : UICollectionViewController
+
+-(IBAction)LoadMovies;
+- (IBAction)SortByRating;
+- (IBAction)SortByPopularity;
 
 @end

@@ -5,5 +5,6 @@
 
 target 'TopMovies' do
 pod 'AFNetworking', '~> 1.3.4'
+pod 'JSONModel', '~> 1.0.0'
 end
 
