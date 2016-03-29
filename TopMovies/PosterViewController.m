@@ -12,7 +12,7 @@
 #import "RetornoTMDB.h"
 #import "FilmeInfo.h"
 #import "AFImageRequestOperation.h"
-
+#import "MovieDetailViewController.h"
 
 @interface PosterViewController (){
     RetornoConfiguration* retornoConfiguration;
@@ -118,7 +118,7 @@
     
     if(film.poster_path!=nil){
         NSString* imgPath= retornoConfiguration.images.base_url;
-        imgPath = [imgPath stringByAppendingString:retornoConfiguration.images.poster_sizes[3]];
+        imgPath = [imgPath stringByAppendingString:retornoConfiguration.images.poster_sizes[2]];
         imgPath = [imgPath stringByAppendingString:film.poster_path];
         NSURL *url = [[NSURL alloc] initWithString:imgPath];
         // download the image asynchronously
@@ -278,6 +278,16 @@
                                    completionBlock(NO,nil);
                                }
                            }];
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+        NSArray *indexPaths = [self.collectionView indexPathsForSelectedItems];
+        MovieDetailViewController *destViewController = segue.destinationViewController;
+        NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
+        destViewController.filme = [filmes objectAtIndex:indexPath.row];
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    
 }
 
 

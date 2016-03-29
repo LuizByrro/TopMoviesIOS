@@ -49,8 +49,8 @@
 		C7D8AC801CA9A946006B4499 /* tmp-11.gif in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC741CA9A946006B4499 /* tmp-11.gif */; };
 		C7F504651CA7115E0020095F /* hungergames.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F504631CA7115E0020095F /* hungergames.jpg */; };
 		C7F504661CA7115E0020095F /* superman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F504641CA7115E0020095F /* superman.jpg */; };
+		C7FEE3691CAAC9EB00651FE8 /* MovieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FEE3681CAAC9EB00651FE8 /* MovieDetailViewController.m */; };
 		C7FFD3B11CA6BEBD00212184 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7FFD3B01CA6BEBD00212184 /* MainStoryboard.storyboard */; };
-		C7FFD3B41CA6D4E800212184 /* MovieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FFD3B31CA6D4E800212184 /* MovieDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,9 +115,9 @@
 		C7D8AC741CA9A946006B4499 /* tmp-11.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tmp-11.gif"; sourceTree = "<group>"; };
 		C7F504631CA7115E0020095F /* hungergames.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hungergames.jpg; sourceTree = "<group>"; };
 		C7F504641CA7115E0020095F /* superman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = superman.jpg; sourceTree = "<group>"; };
+		C7FEE3671CAAC9EB00651FE8 /* MovieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailViewController.h; sourceTree = "<group>"; };
+		C7FEE3681CAAC9EB00651FE8 /* MovieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailViewController.m; sourceTree = "<group>"; };
 		C7FFD3B01CA6BEBD00212184 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
-		C7FFD3B21CA6D4E800212184 /* MovieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailViewController.h; sourceTree = "<group>"; };
-		C7FFD3B31CA6D4E800212184 /* MovieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailViewController.m; sourceTree = "<group>"; };
 		C9390466955F1FBB0756CB7D /* Pods-TopMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopMovies.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TopMovies/Pods-TopMovies.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,8 +187,8 @@
 				C7C8927C1CA55772005DB8FB /* PosterViewController.h */,
 				C7C8927D1CA55772005DB8FB /* PosterViewController.m */,
 				C7FFD3B01CA6BEBD00212184 /* MainStoryboard.storyboard */,
-				C7FFD3B21CA6D4E800212184 /* MovieDetailViewController.h */,
-				C7FFD3B31CA6D4E800212184 /* MovieDetailViewController.m */,
+				C7FEE3671CAAC9EB00651FE8 /* MovieDetailViewController.h */,
+				C7FEE3681CAAC9EB00651FE8 /* MovieDetailViewController.m */,
 			);
 			path = TopMovies;
 			sourceTree = "<group>";
@@ -786,7 +786,6 @@
 				C76605001CA48947008D1CF5 /* AppDelegate.m in Sources */,
 				C766050C1CA48948008D1CF5 /* ViewController.m in Sources */,
 				C7C8927E1CA55772005DB8FB /* PosterViewController.m in Sources */,
-				C7FFD3B41CA6D4E800212184 /* MovieDetailViewController.m in Sources */,
 				C7CF86781CA885E2000E77C6 /* Images.m in Sources */,
 				C7CF867B1CA88A18000E77C6 /* RetornoConfiguration.m in Sources */,
 				C7CF867E1CA89185000E77C6 /* Collection.m in Sources */,
@@ -799,6 +798,7 @@
 				C7CF86931CA89D58000E77C6 /* RetornoTMDB.m in Sources */,
 				C7CF86961CA89E46000E77C6 /* Trailer.m in Sources */,
 				C7CF86991CA89F17000E77C6 /* RetornoTrailer.m in Sources */,
+				C7FEE3691CAAC9EB00651FE8 /* MovieDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
