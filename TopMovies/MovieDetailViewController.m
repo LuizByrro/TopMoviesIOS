@@ -16,8 +16,7 @@
 
 @implementation MovieDetailViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -27,12 +26,10 @@
 
 
 
-- (void)viewDidLoad
-{
-    
+- (void)viewDidLoad{
     [super viewDidLoad];
     
-    
+    /** Animacao de loading na imagem**/
     [self.MoviePoster setContentMode:UIViewContentModeScaleAspectFit];
     self.MoviePoster.animationImages= [NSArray arrayWithObjects:
                                        [UIImage imageNamed:@"tmp-1.gif"],[UIImage imageNamed:@"tmp-2.gif"],[UIImage imageNamed:@"tmp-3.gif"],[UIImage imageNamed:@"tmp-4.gif"],
@@ -44,29 +41,18 @@
     [self.MoviePoster startAnimating];
     
     
-    
     [self.MovieName setText: self.filme.original_title];
-    
-    
     [self.MovieYear setText: @"..."];
     [self.MovieRate setText: @".../10"];
-    [self.MovieOverview setText: @"..."];
     [self.MovieDuration setText: @"..."];
+    [self.overviewTXT loadHTMLString:[NSString stringWithFormat:@"<div align='justify'><font  size='3'>...</font></div>"] baseURL:nil];
+    
     
     [self loadMovieInfo];
     [self loadMovieTrailers];
-    
-    
-    
-    
-
-    
-    
-	// Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -79,7 +65,7 @@
 
 - (void) loadMovieInfo{
     
-    
+    /** Path para carregar as informacoes do filme**/
     NSString* movieInfoPath= @"http://api.themoviedb.org/3/movie/";
     movieInfoPath = [movieInfoPath stringByAppendingString:self.filme.id];
     movieInfoPath = [movieInfoPath stringByAppendingString:@"?api_key=c4cd8d181d2a547a8b7ec7cdb9df1f9b"];
@@ -87,43 +73,26 @@
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://api.themoviedb.org/3"]];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
-                                                            path:movieInfoPath
+                                                    path:movieInfoPath
                                                       parameters:nil];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        /** Trata o retorno da api e converte para um NSObject **/
         NSString* retorno = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSError* err = nil;
         self.filmeInfo = [[RetornoMovieInfo alloc] initWithString:retorno error:&err];
         
+        /** Devine os textos da view **/
         [self.MovieRate setText: [[NSString stringWithFormat:@"%.01f",self.filmeInfo.vote_average] stringByAppendingString:@"/10"]];
         [self.MovieYear setText: [[self.filmeInfo.release_date componentsSeparatedByString: @"-"] objectAtIndex: 0] ];
         [self.MovieDuration setText: [[NSString stringWithFormat:@"%.00f",self.filmeInfo.runtime] stringByAppendingString:@"min"]];
         
-        
-//        self.MovieOverview.numberOfLines=0;
-//        float width = 280;
-//        CGSize maximumLabelSize = CGSizeMake(width, 9999);
-//        CGSize expectedLabelSize = [self.filme.overview sizeWithFont:self.MovieOverview.font constrainedToSize:maximumLabelSize lineBreakMode:self.MovieOverview.lineBreakMode];
-//        CGRect frame = self.MovieOverview .frame;
-//        frame.size.height = expectedLabelSize.height;
-//        self.overviewLabelViewHeightConstraint.constant = expectedLabelSize.height+5;
-//        [self.MovieOverview setText: self.filme.overview];
-        
-        
-        
-        
-        
-       // [self.overviewTXT loadHTMLString:[NSString stringWithFormat:@"<div align='justify'><font face='arial' size='3'> %@</font></div>",self.filmeInfo.overview] baseURL:nil];
+        /** Utiliza um webview para setar o texto justificado **/
         [self.overviewTXT loadHTMLString:[NSString stringWithFormat:@"<div align='justify'><font  size='3'> %@</font></div>",self.filmeInfo.overview] baseURL:nil];
         
-        
-        
-        //[self.view setNeedsUpdateConstraints];
-
-
-        
+        /** Carrega a imagem do filme a partir do path ou exibe uma imagem padrao de erro**/
         if(self.filmeInfo.poster_path!=nil){
             NSString* imgPath= self.configuraton.images.base_url;
             imgPath = [imgPath stringByAppendingString:self.configuraton.images.poster_sizes[3]];
@@ -146,15 +115,21 @@
             [self.MoviePoster setContentMode:UIViewContentModeRedraw];
         }
         
-        
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        /** Exibe uma mensagem de erro e retorna **/
+        /**
+         .
+         .
+         .
+         .
+         .
+         .
+         .
+         .
+         .**/
     }];
-    
     [operation start];
-    
-    
     
 }
 
@@ -162,98 +137,82 @@
 
 - (void) loadMovieTrailers{
     
-    
+    /** Path para carregar a lista de trailers**/
     NSString* trailersPath= @"http://api.themoviedb.org/3/movie/";
     trailersPath = [trailersPath stringByAppendingString:self.filme.id];
     trailersPath = [trailersPath stringByAppendingString:@"/videos?api_key=c4cd8d181d2a547a8b7ec7cdb9df1f9b"];
-    //NSURL *url = [[NSURL alloc] initWithString:imgPath];
-    
-    
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://api.themoviedb.org/3"]];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
-                                                            path:trailersPath
+                                                      path:trailersPath
                                                       parameters:nil];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        /** Trata o retorno da api e converte para um NSObject **/
         NSString* retorno = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSError* err = nil;
         self.trailers = [[RetornoTrailer alloc] initWithString:retorno error:&err];
-        //NSLog(@"Response: %@", retornoTMDB);
-        NSLog(@"%@", self.trailers);
+        NSLog(@"Retorno Trailer%@", retorno);
         
-
-    
-            CGFloat height = self.tableView.rowHeight;
-            height *= self.trailers.results.count;
-            CGRect tableFrame = self.tableView.frame;
-            tableFrame.size.height = height;
-       
-     NSLog(@"%f", self.tableView.rowHeight);
-      
-   self.tableViewHeightConstraint.constant = height;
+        /** Calcula o Tamanho da tableview de trailers **/
+        CGFloat height = self.tableView.rowHeight;
+        height *= self.trailers.results.count;
+        CGRect tableFrame = self.tableView.frame;
+        tableFrame.size.height = height;
+        
+        /** Seta e atualiza o Tamanho da tableview de trailers **/
+        self.tableViewHeightConstraint.constant = height;
+        self.tableView.frame = tableFrame;
+        [self.tableView reloadData];
         [self.view setNeedsUpdateConstraints];
-
-    self.tableView.frame = tableFrame;
-        
-    [self.tableView reloadData];
-        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        /** Exibe uma mensagem de erro e retorna **/
+        /**
+         .
+         .
+         .
+         .
+         .
+         .
+         .
+         .
+         .**/
+
     }];
     [operation start];
-    
-    
-    
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.trailers.results count];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
+    /** Coloca o texto e a Imagem de um play na celula da tableview dos trailers **/
     UILabel *textView = [[UILabel alloc] initWithFrame:CGRectMake(40, 6, 100, 28)];
     [textView setText: [@"Trailer " stringByAppendingString:[NSString stringWithFormat:@"%d",indexPath.row+1] ]];
-    
-    // cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
     [cell.contentView addSubview:textView];
     UIImageView *imgView=[[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 30, 30)];
     imgView.backgroundColor=[UIColor clearColor];
     [imgView setImage:[UIImage imageNamed:@"play.png"]];
     [cell.contentView addSubview:imgView];
     
-    
-    
     return cell;
-    
 }
 
 
-- (CGFloat)getLabelsize:(UILabel *)label
-{
-    CGSize maxSize = CGSizeMake(label.frame.size.width, 9999);
-    CGSize requiredSize = [label sizeThatFits:maxSize];
-    
-    return requiredSize.height;
-}
-
-
-- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
-{
+/** Funcao para baixar a imagem a partir de um url de forma assincrona **/
+- (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock{
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
@@ -269,10 +228,11 @@
 }
 
 
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
+/** Atualiza o tamanho da webview com o overview do filme **/
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
     self.overviewTXT.scrollView.scrollEnabled = NO;
     self.overviewHeightConstraint.constant = self.overviewTXT.scrollView.contentSize.height;
+    [self.view setNeedsUpdateConstraints];
 }
 
 

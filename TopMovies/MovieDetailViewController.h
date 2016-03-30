@@ -20,13 +20,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *MovieYear;
 @property (weak, nonatomic) IBOutlet UILabel *MovieDuration;
 @property (weak, nonatomic) IBOutlet UILabel *MovieRate;
-@property (weak, nonatomic) IBOutlet UILabel *MovieOverview;
+@property (weak, nonatomic) IBOutlet UIWebView *overviewTXT;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *overviewLabelViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet UIWebView *overviewTXT;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *overviewHeightConstraint;
 
 
