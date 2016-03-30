@@ -94,7 +94,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="dQG-xd-QgA"/>
                         <barButtonItem key="rightBarButtonItem" title="Options" id="17q-O5-cVT">
                             <connections>
-                                <action selector="optionsButtonPressed" destination="5yv-Hk-gAG" id="Rjt-yG-RfH"/>
+                                <action selector="chooseOptionButtonTapped:" destination="5yv-Hk-gAG" id="Gyy-tG-HMv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -291,6 +291,7 @@
                 <relationship kind="action" name="LoadMovies"/>
                 <relationship kind="action" name="SortByPopularity"/>
                 <relationship kind="action" name="SortByRating"/>
+                <relationship kind="action" name="chooseOptionButtonTapped:"/>
                 <relationship kind="action" name="optionsButtonPressed"/>
             </relationships>
         </class>
@@ -305,6 +306,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -55,6 +55,9 @@
     itens_perPage=20;
     filmes = [(NSMutableArray<FilmeInfo,Optional>*) [NSMutableArray alloc] init];
     
+    
+    
+    
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://api.themoviedb.org/3"]];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
                                                             path:@"http://api.themoviedb.org/3/configuration?api_key=c4cd8d181d2a547a8b7ec7cdb9df1f9b"
@@ -294,6 +297,40 @@
 - (IBAction)optionsButtonPressed{
 
     
+}
+
+-(IBAction)chooseOptionButtonTapped:(id)sender
+{
+    if (self.optionPicker == nil) {
+        //Create the ColorPickerViewController.
+        self.optionPicker = [[optionsViewController alloc] initWithStyle:UITableViewStylePlain];
+        
+        //Set this VC as the delegate.
+        self.optionPicker.delegate = self;
+    }
+    
+    if (self.optionPickerPopover == nil) {
+        //The color picker popover is not showing. Show it.
+        self.optionPickerPopover = [[UIPopoverController alloc] initWithContentViewController:self.optionPicker];
+        [self.optionPickerPopover presentPopoverFromBarButtonItem:(UIBarButtonItem *)sender
+                                    permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    } else {
+        //The color picker popover is showing. Hide it.
+        [self.optionPickerPopover dismissPopoverAnimated:YES];
+        self.optionPickerPopover = nil;
+    }
+}
+
+
+-(void)selectedOption:(NSString *)option
+{
+    //_nameLabel.textColor = newColor;
+    
+    //Dismiss the popover if it's showing.
+    if (self.optionPickerPopover) {
+        [self.optionPickerPopover dismissPopoverAnimated:YES];
+        self.optionPickerPopover = nil;
+    }
 }
 
 
