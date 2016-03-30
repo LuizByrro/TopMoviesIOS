@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FilmeInfo.h"
+#import "RetornoConfiguration.h"
+#import "RetornoMovieInfo.h"
+#import "RetornoTrailer.h"
 
 @interface MovieDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -26,5 +29,8 @@
 
 
 @property (strong, nonatomic)  FilmeInfo *filme;
+@property (strong, nonatomic)  RetornoMovieInfo *filmeInfo;
+@property (strong, nonatomic)  RetornoConfiguration * configuraton;
+@property (strong, nonatomic)  RetornoTrailer * trailers;
 
 @end

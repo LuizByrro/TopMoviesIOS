@@ -286,6 +286,7 @@
         MovieDetailViewController *destViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [indexPaths objectAtIndex:0];
         destViewController.filme = [filmes objectAtIndex:indexPath.row];
+        destViewController.configuraton = retornoConfiguration;
         [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
     
 }

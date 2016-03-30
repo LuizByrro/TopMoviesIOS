@@ -49,6 +49,7 @@
 		C7D8AC801CA9A946006B4499 /* tmp-11.gif in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC741CA9A946006B4499 /* tmp-11.gif */; };
 		C7F504651CA7115E0020095F /* hungergames.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F504631CA7115E0020095F /* hungergames.jpg */; };
 		C7F504661CA7115E0020095F /* superman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F504641CA7115E0020095F /* superman.jpg */; };
+		C7F604DD1CAB2B3C00A0F29B /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = C7F604DC1CAB2B3C00A0F29B /* play.png */; };
 		C7FEE3691CAAC9EB00651FE8 /* MovieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7FEE3681CAAC9EB00651FE8 /* MovieDetailViewController.m */; };
 		C7FFD3B11CA6BEBD00212184 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7FFD3B01CA6BEBD00212184 /* MainStoryboard.storyboard */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,7 @@
 		C7D8AC741CA9A946006B4499 /* tmp-11.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tmp-11.gif"; sourceTree = "<group>"; };
 		C7F504631CA7115E0020095F /* hungergames.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hungergames.jpg; sourceTree = "<group>"; };
 		C7F504641CA7115E0020095F /* superman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = superman.jpg; sourceTree = "<group>"; };
+		C7F604DC1CAB2B3C00A0F29B /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		C7FEE3671CAAC9EB00651FE8 /* MovieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailViewController.h; sourceTree = "<group>"; };
 		C7FEE3681CAAC9EB00651FE8 /* MovieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailViewController.m; sourceTree = "<group>"; };
 		C7FFD3B01CA6BEBD00212184 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				C7F504641CA7115E0020095F /* superman.jpg */,
 				C7F504631CA7115E0020095F /* hungergames.jpg */,
 				C7D8AC651CA9A55E006B4499 /* ic_error.png */,
+				C7F604DC1CAB2B3C00A0F29B /* play.png */,
 				C7D8AC691CA9A944006B4499 /* tmp-0.gif */,
 				C7D8AC6A1CA9A944006B4499 /* tmp-1.gif */,
 				C7D8AC6B1CA9A944006B4499 /* tmp-2.gif */,
@@ -364,6 +367,7 @@
 				C7D8AC7E1CA9A946006B4499 /* tmp-9.gif in Resources */,
 				C7D8AC7F1CA9A946006B4499 /* tmp-10.gif in Resources */,
 				C7D8AC801CA9A946006B4499 /* tmp-11.gif in Resources */,
+				C7F604DD1CAB2B3C00A0F29B /* play.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
