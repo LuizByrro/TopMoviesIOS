@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIWebView *overviewTXT;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *overviewHeightConstraint;
 
 
 @property (strong, nonatomic)  FilmeInfo *filme;

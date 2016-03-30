@@ -102,27 +102,42 @@
         [self.MovieDuration setText: [[NSString stringWithFormat:@"%.00f",self.filmeInfo.runtime] stringByAppendingString:@"min"]];
         
         
-        self.MovieOverview.numberOfLines=0;
-        float width = 280;
-        CGSize maximumLabelSize = CGSizeMake(width, 9999);
-        CGSize expectedLabelSize = [self.filme.overview sizeWithFont:self.MovieOverview.font constrainedToSize:maximumLabelSize lineBreakMode:self.MovieOverview.lineBreakMode];
-        CGRect frame = self.MovieOverview .frame;
-        frame.size.height = expectedLabelSize.height;
-        self.overviewLabelViewHeightConstraint.constant = expectedLabelSize.height+5;
-        [self.MovieOverview setText: self.filme.overview];
+//        self.MovieOverview.numberOfLines=0;
+//        float width = 280;
+//        CGSize maximumLabelSize = CGSizeMake(width, 9999);
+//        CGSize expectedLabelSize = [self.filme.overview sizeWithFont:self.MovieOverview.font constrainedToSize:maximumLabelSize lineBreakMode:self.MovieOverview.lineBreakMode];
+//        CGRect frame = self.MovieOverview .frame;
+//        frame.size.height = expectedLabelSize.height;
+//        self.overviewLabelViewHeightConstraint.constant = expectedLabelSize.height+5;
+//        [self.MovieOverview setText: self.filme.overview];
         
+        
+        
+        
+        
+       // [self.overviewTXT loadHTMLString:[NSString stringWithFormat:@"<div align='justify'><font face='arial' size='3'> %@</font></div>",self.filmeInfo.overview] baseURL:nil];
+        [self.overviewTXT loadHTMLString:[NSString stringWithFormat:@"<div align='justify'><font  size='3'> %@</font></div>",self.filmeInfo.overview] baseURL:nil];
+        
+        
+        
+        //[self.view setNeedsUpdateConstraints];
+
+
         
         if(self.filmeInfo.poster_path!=nil){
             NSString* imgPath= self.configuraton.images.base_url;
-            imgPath = [imgPath stringByAppendingString:self.configuraton.images.poster_sizes[2]];
+            imgPath = [imgPath stringByAppendingString:self.configuraton.images.poster_sizes[3]];
             imgPath = [imgPath stringByAppendingString:self.filmeInfo.poster_path];
             NSURL *url = [[NSURL alloc] initWithString:imgPath];
             [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
                 if (succeeded) {
-                    // change the image in the cell
                     [self.MoviePoster stopAnimating];
                     self.MoviePoster.image= image;
                     [self.MoviePoster setContentMode:UIViewContentModeScaleAspectFill];
+                }else{
+                    [self.MoviePoster stopAnimating];
+                    self.MoviePoster.image = [UIImage imageNamed:@"ic_error.png"];
+                    [self.MoviePoster setContentMode:UIViewContentModeRedraw];
                 }
             }];
         }else{
@@ -136,6 +151,7 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+    
     [operation start];
     
     
@@ -250,6 +266,13 @@
                                    completionBlock(NO,nil);
                                }
                            }];
+}
+
+
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    self.overviewTXT.scrollView.scrollEnabled = NO;
+    self.overviewHeightConstraint.constant = self.overviewTXT.scrollView.contentSize.height;
 }
 
 

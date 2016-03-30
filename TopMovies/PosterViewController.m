@@ -110,7 +110,7 @@
     recipeImageView.animationDuration = 1.0f;
     recipeImageView.animationRepeatCount = 0;
     [recipeImageView startAnimating];
-    [recipeImageView setContentMode:UIViewContentModeRedraw];
+    [recipeImageView setContentMode:UIViewContentModeScaleAspectFit];
     
     
     //recipeImageView.image = [UIImage imageNamed:@"progress_image.png"];
@@ -118,20 +118,19 @@
     
     if(film.poster_path!=nil){
         NSString* imgPath= retornoConfiguration.images.base_url;
-        imgPath = [imgPath stringByAppendingString:retornoConfiguration.images.poster_sizes[2]];
+        imgPath = [imgPath stringByAppendingString:retornoConfiguration.images.poster_sizes[3]];
         imgPath = [imgPath stringByAppendingString:film.poster_path];
         NSURL *url = [[NSURL alloc] initWithString:imgPath];
         // download the image asynchronously
         [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
             if (succeeded) {
-                // change the image in the cell
                 [recipeImageView stopAnimating];
-                
-                recipeImageView.image= image;
-                [recipeImageView setContentMode:UIViewContentModeScaleAspectFill];
-                
-                // cache the image for use later (when scrolling up)
-                //venue.image = image;
+                recipeImageView.image= image;// cache the image for use later (when scrolling up)
+                [recipeImageView setContentMode:UIViewContentModeScaleAspectFit];
+            }else{
+                [recipeImageView stopAnimating];
+                recipeImageView.image = [UIImage imageNamed:@"ic_error.png"];
+                [recipeImageView setContentMode:UIViewContentModeRedraw];
             }
         }];
     }else{
@@ -288,6 +287,12 @@
         destViewController.filme = [filmes objectAtIndex:indexPath.row];
         destViewController.configuraton = retornoConfiguration;
         [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    
+}
+
+
+- (IBAction)optionsButtonPressed{
+
     
 }
 

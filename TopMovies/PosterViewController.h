@@ -15,5 +15,6 @@
 -(IBAction)LoadMovies;
 - (IBAction)SortByRating;
 - (IBAction)SortByPopularity;
+- (IBAction)optionsButtonPressed;
 
 @end
