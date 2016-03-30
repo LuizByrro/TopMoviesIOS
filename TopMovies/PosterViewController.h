@@ -16,9 +16,9 @@
 @interface PosterViewController : UICollectionViewController <OptionPickerDelegate>
 
 -(IBAction)LoadMovies;
-- (IBAction)SortByRating;
-- (IBAction)SortByPopularity;
-- (IBAction)optionsButtonPressed;
+- (void)SortByRating;
+- (void)SortByPopularity;
+- (IBAction)Clear;
 
 @property (nonatomic, strong) optionsViewController *optionPicker;
 @property (nonatomic, strong) UIPopoverController *optionPickerPopover;

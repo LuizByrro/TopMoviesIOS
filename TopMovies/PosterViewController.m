@@ -242,7 +242,7 @@
     }
 }
 
-- (IBAction)SortByRating{
+- (void)SortByRating{
     
     sortByRating=true;
     NSSortDescriptor *sortDescriptor;
@@ -254,13 +254,21 @@
     
 }
 
-- (IBAction)SortByPopularity{
+- (void)SortByPopularity{
     sortByRating=false;
     NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"popularity" ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     NSArray *sortedArray = [filmes sortedArrayUsingDescriptors:sortDescriptors];
     filmes= [sortedArray mutableCopy];
+    [self.collectionView reloadData];
+    
+}
+
+
+- (IBAction)Clear{
+    [filmes removeAllObjects];
+    actual_page=1;
     [self.collectionView reloadData];
     
 }
@@ -325,6 +333,13 @@
 -(void)selectedOption:(NSString *)option
 {
     //_nameLabel.textColor = newColor;
+    
+    
+    if ([option isEqualToString:@"Sort By Popularity"]) {
+        [self SortByPopularity];
+    } else if ([option isEqualToString:@"Sort By Rating"]){
+        [self SortByRating];
+    }
     
     //Dismiss the popover if it's showing.
     if (self.optionPickerPopover) {

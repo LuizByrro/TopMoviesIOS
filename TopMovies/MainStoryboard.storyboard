@@ -92,6 +92,11 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Top Movies" id="FM5-p7-dlL">
                         <barButtonItem key="backBarButtonItem" title="Back" id="dQG-xd-QgA"/>
+                        <barButtonItem key="leftBarButtonItem" title="Clear" id="9mU-Hx-okI">
+                            <connections>
+                                <action selector="Clear" destination="5yv-Hk-gAG" id="R7W-MZ-McA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Options" id="17q-O5-cVT">
                             <connections>
                                 <action selector="chooseOptionButtonTapped:" destination="5yv-Hk-gAG" id="Gyy-tG-HMv"/>
@@ -288,11 +293,9 @@
         <class className="PosterViewController" superclassName="UICollectionViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PosterViewController.h"/>
             <relationships>
+                <relationship kind="action" name="Clear"/>
                 <relationship kind="action" name="LoadMovies"/>
-                <relationship kind="action" name="SortByPopularity"/>
-                <relationship kind="action" name="SortByRating"/>
                 <relationship kind="action" name="chooseOptionButtonTapped:"/>
-                <relationship kind="action" name="optionsButtonPressed"/>
             </relationships>
         </class>
         <class className="UICollectionReusableView" superclassName="UIView">
