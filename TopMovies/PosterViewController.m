@@ -44,8 +44,8 @@
     [super viewDidLoad];
     
     /** Cria dialogs para mostrar enquanto carrega as informacoes**/
-    self.alertViewLoadingMovies = [[UIAlertView alloc] initWithTitle:@"Configuring..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
-    self.alertViewConfiguring = [[UIAlertView alloc] initWithTitle:@"Loading Movies..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    self.alertViewConfiguring = [[UIAlertView alloc] initWithTitle:@"Configuring..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    self.alertViewLoadingMovies = [[UIAlertView alloc] initWithTitle:@"Loading Movies..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
     UIActivityIndicatorView *spinner1 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     UIActivityIndicatorView *spinner2 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     NSLog(@" verison: %@",[[UIDevice currentDevice] systemVersion]);
