@@ -29,6 +29,19 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    
+    
+    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"url_to_app_store"]];
+    
+    /** Cria dialogs para mostrar enquanto carrega as informacoes**/
+    self.alertViewLoadingMovieInfo = [[UIAlertView alloc] initWithTitle:@"Loading Movie Info..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    self.alertViewLoadingTrailers = [[UIAlertView alloc] initWithTitle:@"Loading Movie Trailers..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    spinner.center = CGPointMake(139.5, 75.5);
+    [spinner startAnimating];
+    [self.alertViewLoadingMovieInfo addSubview:spinner];
+    [self.alertViewLoadingTrailers addSubview:spinner];
+    
     /** Animacao de loading na imagem**/
     [self.MoviePoster setContentMode:UIViewContentModeScaleAspectFit];
     self.MoviePoster.animationImages= [NSArray arrayWithObjects:
@@ -49,7 +62,8 @@
     
     
     [self loadMovieInfo];
-    [self loadMovieTrailers];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning{
@@ -57,14 +71,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)close:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+- (void)close {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 
 - (void) loadMovieInfo{
     
+    [self.alertViewLoadingMovieInfo show];
     /** Path para carregar as informacoes do filme**/
     NSString* movieInfoPath= @"http://api.themoviedb.org/3/movie/";
     movieInfoPath = [movieInfoPath stringByAppendingString:self.filme.id];
@@ -78,6 +93,7 @@
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.alertViewLoadingMovieInfo dismissWithClickedButtonIndex:0 animated:YES];
         
         /** Trata o retorno da api e converte para um NSObject **/
         NSString* retorno = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -115,19 +131,19 @@
             [self.MoviePoster setContentMode:UIViewContentModeRedraw];
         }
         
+        
+        /** Carrega os trailers**/
+        [self loadMovieTrailers];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+        [self.alertViewLoadingMovieInfo dismissWithClickedButtonIndex:0 animated:YES];
+
         /** Exibe uma mensagem de erro e retorna **/
-        /**
-         .
-         .
-         .
-         .
-         .
-         .
-         .
-         .
-         .**/
+        NSLog(@"Error: %@", error);
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                   initWithTitle:@"Error :[" message:@"Conection error, please try again!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
+        [errorAlert show];
+        
     }];
     [operation start];
     
@@ -136,6 +152,7 @@
 
 
 - (void) loadMovieTrailers{
+    [self.alertViewLoadingTrailers show];
     
     /** Path para carregar a lista de trailers**/
     NSString* trailersPath= @"http://api.themoviedb.org/3/movie/";
@@ -149,6 +166,7 @@
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self.alertViewLoadingTrailers dismissWithClickedButtonIndex:0 animated:YES];
         
         /** Trata o retorno da api e converte para um NSObject **/
         NSString* retorno = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
@@ -169,18 +187,13 @@
         [self.view setNeedsUpdateConstraints];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.alertViewLoadingTrailers dismissWithClickedButtonIndex:0 animated:YES];
+        
+        /** Exibe uma mensagem de erro e permanece na tela **/
         NSLog(@"Error: %@", error);
-        /** Exibe uma mensagem de erro e retorna **/
-        /**
-         .
-         .
-         .
-         .
-         .
-         .
-         .
-         .
-         .**/
+        UIAlertView *errorAlert = [[UIAlertView alloc]
+                                   initWithTitle:@"Error :[" message:@"Cannot download trailers info, please return and try again!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+        [errorAlert show];
 
     }];
     [operation start];
@@ -233,6 +246,17 @@
     self.overviewTXT.scrollView.scrollEnabled = NO;
     self.overviewHeightConstraint.constant = self.overviewTXT.scrollView.contentSize.height;
     [self.view setNeedsUpdateConstraints];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        NSLog(@"Clicked button index 0");
+        [self close];
+    } else {
+        NSLog(@"Clicked button index other than 0");
+        // Add another action here
+    }
 }
 
 

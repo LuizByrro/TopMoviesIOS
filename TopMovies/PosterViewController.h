@@ -23,6 +23,9 @@
 @property (nonatomic, strong) optionsViewController *optionPicker;
 @property (nonatomic, strong) UIPopoverController *optionPickerPopover;
 
+@property (nonatomic, strong) UIAlertView *alertViewConfiguring;
+@property (nonatomic, strong) UIAlertView *alertViewLoadingMovies;
+
 -(IBAction)chooseOptionButtonTapped:(id)sender;
 
 

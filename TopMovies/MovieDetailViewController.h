@@ -14,7 +14,6 @@
 
 @interface MovieDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-- (IBAction)close:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *MovieName;
 @property (weak, nonatomic) IBOutlet UIImageView *MoviePoster;
 @property (weak, nonatomic) IBOutlet UILabel *MovieYear;
@@ -33,5 +32,9 @@
 @property (strong, nonatomic)  RetornoMovieInfo *filmeInfo;
 @property (strong, nonatomic)  RetornoConfiguration * configuraton;
 @property (strong, nonatomic)  RetornoTrailer * trailers;
+
+
+@property (nonatomic, strong) UIAlertView *alertViewLoadingTrailers;
+@property (nonatomic, strong) UIAlertView *alertViewLoadingMovieInfo;
 
 @end
