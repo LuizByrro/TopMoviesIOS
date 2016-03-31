@@ -31,16 +31,33 @@
     
     
     
-    //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"url_to_app_store"]];
+    
     
     /** Cria dialogs para mostrar enquanto carrega as informacoes**/
+    self.alertViewOpenYoutube = [[UIAlertView alloc]
+                                 initWithTitle:@"Open Youtube" message:@" Open this video on Youtube?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+    self.alertViewMovieInfoError = [[UIAlertView alloc]
+                                    initWithTitle:@"Error :[" message:@"Conection error, please try again!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
+    
     self.alertViewLoadingMovieInfo = [[UIAlertView alloc] initWithTitle:@"Loading Movie Info..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
     self.alertViewLoadingTrailers = [[UIAlertView alloc] initWithTitle:@"Loading Movie Trailers..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    spinner.center = CGPointMake(139.5, 75.5);
-    [spinner startAnimating];
-    [self.alertViewLoadingMovieInfo addSubview:spinner];
-    [self.alertViewLoadingTrailers addSubview:spinner];
+    UIActivityIndicatorView *spinner1 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIActivityIndicatorView *spinner2 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    NSLog(@" verison: %@",[[UIDevice currentDevice] systemVersion]);
+    if([[[UIDevice currentDevice] systemVersion]integerValue]<7){
+        spinner1.center = CGPointMake(139.5, 75.5);
+        spinner2.center = CGPointMake(139.5, 75.5);
+        [self.alertViewLoadingMovieInfo addSubview:spinner1];
+        [self.alertViewLoadingTrailers addSubview:spinner2];
+        [spinner1 startAnimating];
+        [spinner2 startAnimating];
+        
+    }else{
+        [spinner1 startAnimating];
+        [spinner2 startAnimating];
+        [self.alertViewLoadingMovieInfo setValue:spinner1 forKey:@"accessoryView"];
+        [self.alertViewLoadingTrailers setValue:spinner2 forKey:@"accessoryView"];
+    }
     
     /** Animacao de loading na imagem**/
     [self.MoviePoster setContentMode:UIViewContentModeScaleAspectFit];
@@ -60,6 +77,7 @@
     [self.MovieDuration setText: @"..."];
     [self.overviewTXT loadHTMLString:[NSString stringWithFormat:@"<div align='justify'><font  size='3'>...</font></div>"] baseURL:nil];
     
+    self.selectedTrailerIndex = [[NSIndexPath alloc] init];
     
     [self loadMovieInfo];
     
@@ -88,7 +106,7 @@
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://api.themoviedb.org/3"]];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
-                                                    path:movieInfoPath
+                                                            path:movieInfoPath
                                                       parameters:nil];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
@@ -137,12 +155,11 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [self.alertViewLoadingMovieInfo dismissWithClickedButtonIndex:0 animated:YES];
-
+        
         /** Exibe uma mensagem de erro e retorna **/
         NSLog(@"Error: %@", error);
-        UIAlertView *errorAlert = [[UIAlertView alloc]
-                                   initWithTitle:@"Error :[" message:@"Conection error, please try again!" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
-        [errorAlert show];
+        
+        [self.alertViewMovieInfoError show];
         
     }];
     [operation start];
@@ -161,7 +178,7 @@
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://api.themoviedb.org/3"]];
     NSMutableURLRequest *request = [httpClient requestWithMethod:@"GET"
-                                                      path:trailersPath
+                                                            path:trailersPath
                                                       parameters:nil];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     [httpClient registerHTTPOperationClass:[AFHTTPRequestOperation class]];
@@ -194,7 +211,7 @@
         UIAlertView *errorAlert = [[UIAlertView alloc]
                                    initWithTitle:@"Error :[" message:@"Cannot download trailers info, please return and try again!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
         [errorAlert show];
-
+        
     }];
     [operation start];
 }
@@ -249,14 +266,42 @@
 }
 
 
+/**Retorno dos Botoes das views de alerta**/
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        NSLog(@"Clicked button index 0");
-        [self close];
-    } else {
-        NSLog(@"Clicked button index other than 0");
-        // Add another action here
+    if(alertView ==self.alertViewMovieInfoError){
+        if (buttonIndex == 0) {
+            [self close];
+        }
     }
+    if(alertView ==self.alertViewOpenYoutube){
+        if (buttonIndex == 1) {
+            NSLog(@"%d",[self selectedTrailerIndex].row);
+            Trailer * trailer = [self.trailers.results objectAtIndex:[self selectedTrailerIndex].row];
+            NSURL *youTubeAppUrl =[NSURL URLWithString:[NSString stringWithFormat:@"youtube://watch?v=%@",trailer.key]];
+            NSURL *youTubeWebUrl =[NSURL URLWithString:[NSString stringWithFormat:@"https://www.youtube.com/watch?v=%@",trailer.key]];
+            if ([[UIApplication sharedApplication] canOpenURL:youTubeAppUrl]) {
+                /**Abre o app do youtube**/
+                [[UIApplication sharedApplication] openURL:youTubeAppUrl];
+            }
+            else{
+                /**Abre o safari ou outro navegador padrao**/
+                [[UIApplication sharedApplication] openURL:youTubeWebUrl];
+            }
+        }
+    }
+}
+
+/**Trata a selecao do botao**/
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    /**Salva a posicao do trailer escolhido para ser usado no retorno do alert**/
+    self.selectedTrailerIndex = indexPath;
+    
+    NSLog(@"%@",indexPath);
+    
+    
+    
+    [self.alertViewOpenYoutube  show];
 }
 
 

@@ -44,13 +44,24 @@
     [super viewDidLoad];
     
     /** Cria dialogs para mostrar enquanto carrega as informacoes**/
-    self.alertViewConfiguring = [[UIAlertView alloc] initWithTitle:@"Configuring..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
-    self.alertViewLoadingMovies = [[UIAlertView alloc] initWithTitle:@"Loading Movies..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]; 
-    spinner.center = CGPointMake(139.5, 75.5);
-    [spinner startAnimating];
-    [self.alertViewConfiguring addSubview:spinner];
-    [self.alertViewLoadingMovies addSubview:spinner];
+    self.alertViewLoadingMovies = [[UIAlertView alloc] initWithTitle:@"Configuring..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    self.alertViewConfiguring = [[UIAlertView alloc] initWithTitle:@"Loading Movies..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    UIActivityIndicatorView *spinner1 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    UIActivityIndicatorView *spinner2 = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    NSLog(@" verison: %@",[[UIDevice currentDevice] systemVersion]);
+    if([[[UIDevice currentDevice] systemVersion]integerValue]<7){
+        spinner1.center = CGPointMake(139.5, 75.5);
+        spinner2.center = CGPointMake(139.5, 75.5);
+        [self.self.alertViewLoadingMovies addSubview:spinner1];
+        [self.alertViewConfiguring addSubview:spinner2];
+        [spinner1 startAnimating];
+        [spinner2 startAnimating];
+    }else{
+        [spinner1 startAnimating];
+        [spinner2 startAnimating];
+        [self.self.alertViewLoadingMovies setValue:spinner1 forKey:@"accessoryView"];
+        [self.alertViewConfiguring setValue:spinner2 forKey:@"accessoryView"];
+    }
     
     
     total_pages=50;

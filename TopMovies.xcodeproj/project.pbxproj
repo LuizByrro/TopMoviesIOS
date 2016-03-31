@@ -31,10 +31,7 @@
 		C7CF86931CA89D58000E77C6 /* RetornoTMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF86921CA89D58000E77C6 /* RetornoTMDB.m */; };
 		C7CF86961CA89E46000E77C6 /* Trailer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF86951CA89E45000E77C6 /* Trailer.m */; };
 		C7CF86991CA89F17000E77C6 /* RetornoTrailer.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CF86981CA89F17000E77C6 /* RetornoTrailer.m */; };
-		C7D8AC621CA99CA5006B4499 /* no-512.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC611CA99CA5006B4499 /* no-512.png */; };
-		C7D8AC641CA9A05A006B4499 /* loadinggif.gif in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC631CA9A05A006B4499 /* loadinggif.gif */; };
 		C7D8AC671CA9A55E006B4499 /* ic_error.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC651CA9A55E006B4499 /* ic_error.png */; };
-		C7D8AC681CA9A55E006B4499 /* progress_image.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC661CA9A55E006B4499 /* progress_image.png */; };
 		C7D8AC751CA9A946006B4499 /* tmp-0.gif in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC691CA9A944006B4499 /* tmp-0.gif */; };
 		C7D8AC761CA9A946006B4499 /* tmp-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC6A1CA9A944006B4499 /* tmp-1.gif */; };
 		C7D8AC771CA9A946006B4499 /* tmp-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC6B1CA9A944006B4499 /* tmp-2.gif */; };
@@ -47,8 +44,6 @@
 		C7D8AC7E1CA9A946006B4499 /* tmp-9.gif in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC721CA9A945006B4499 /* tmp-9.gif */; };
 		C7D8AC7F1CA9A946006B4499 /* tmp-10.gif in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC731CA9A946006B4499 /* tmp-10.gif */; };
 		C7D8AC801CA9A946006B4499 /* tmp-11.gif in Resources */ = {isa = PBXBuildFile; fileRef = C7D8AC741CA9A946006B4499 /* tmp-11.gif */; };
-		C7F504651CA7115E0020095F /* hungergames.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F504631CA7115E0020095F /* hungergames.jpg */; };
-		C7F504661CA7115E0020095F /* superman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C7F504641CA7115E0020095F /* superman.jpg */; };
 		C7F591731CAC4CF4008668DF /* optionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F591721CAC4CF4008668DF /* optionsViewController.m */; };
 		C7F591761CAC5808008668DF /* NSObject+UIPopover_Iphone.m in Sources */ = {isa = PBXBuildFile; fileRef = C7F591751CAC5808008668DF /* NSObject+UIPopover_Iphone.m */; };
 		C7F604DD1CAB2B3C00A0F29B /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = C7F604DC1CAB2B3C00A0F29B /* play.png */; };
@@ -100,10 +95,7 @@
 		C7CF86951CA89E45000E77C6 /* Trailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trailer.m; sourceTree = "<group>"; };
 		C7CF86971CA89F16000E77C6 /* RetornoTrailer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetornoTrailer.h; sourceTree = "<group>"; };
 		C7CF86981CA89F17000E77C6 /* RetornoTrailer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetornoTrailer.m; sourceTree = "<group>"; };
-		C7D8AC611CA99CA5006B4499 /* no-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-512.png"; sourceTree = "<group>"; };
-		C7D8AC631CA9A05A006B4499 /* loadinggif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loadinggif.gif; sourceTree = "<group>"; };
 		C7D8AC651CA9A55E006B4499 /* ic_error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_error.png; sourceTree = "<group>"; };
-		C7D8AC661CA9A55E006B4499 /* progress_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progress_image.png; sourceTree = "<group>"; };
 		C7D8AC691CA9A944006B4499 /* tmp-0.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tmp-0.gif"; sourceTree = "<group>"; };
 		C7D8AC6A1CA9A944006B4499 /* tmp-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tmp-1.gif"; sourceTree = "<group>"; };
 		C7D8AC6B1CA9A944006B4499 /* tmp-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tmp-2.gif"; sourceTree = "<group>"; };
@@ -116,8 +108,6 @@
 		C7D8AC721CA9A945006B4499 /* tmp-9.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tmp-9.gif"; sourceTree = "<group>"; };
 		C7D8AC731CA9A946006B4499 /* tmp-10.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tmp-10.gif"; sourceTree = "<group>"; };
 		C7D8AC741CA9A946006B4499 /* tmp-11.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "tmp-11.gif"; sourceTree = "<group>"; };
-		C7F504631CA7115E0020095F /* hungergames.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = hungergames.jpg; sourceTree = "<group>"; };
-		C7F504641CA7115E0020095F /* superman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = superman.jpg; sourceTree = "<group>"; };
 		C7F591711CAC4CF4008668DF /* optionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optionsViewController.h; sourceTree = "<group>"; };
 		C7F591721CAC4CF4008668DF /* optionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionsViewController.m; sourceTree = "<group>"; };
 		C7F591741CAC5808008668DF /* NSObject+UIPopover_Iphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+UIPopover_Iphone.h"; sourceTree = "<group>"; };
@@ -220,11 +210,6 @@
 		C7D8AC811CA9B3E1006B4499 /* Pictures */ = {
 			isa = PBXGroup;
 			children = (
-				C7D8AC661CA9A55E006B4499 /* progress_image.png */,
-				C7D8AC631CA9A05A006B4499 /* loadinggif.gif */,
-				C7D8AC611CA99CA5006B4499 /* no-512.png */,
-				C7F504641CA7115E0020095F /* superman.jpg */,
-				C7F504631CA7115E0020095F /* hungergames.jpg */,
 				C7D8AC651CA9A55E006B4499 /* ic_error.png */,
 				C7F604DC1CAB2B3C00A0F29B /* play.png */,
 				C7D8AC691CA9A944006B4499 /* tmp-0.gif */,
@@ -362,12 +347,7 @@
 				C76605041CA48948008D1CF5 /* Default@2x.png in Resources */,
 				C76605061CA48948008D1CF5 /* Default-568h@2x.png in Resources */,
 				C7FFD3B11CA6BEBD00212184 /* MainStoryboard.storyboard in Resources */,
-				C7F504651CA7115E0020095F /* hungergames.jpg in Resources */,
-				C7F504661CA7115E0020095F /* superman.jpg in Resources */,
-				C7D8AC621CA99CA5006B4499 /* no-512.png in Resources */,
-				C7D8AC641CA9A05A006B4499 /* loadinggif.gif in Resources */,
 				C7D8AC671CA9A55E006B4499 /* ic_error.png in Resources */,
-				C7D8AC681CA9A55E006B4499 /* progress_image.png in Resources */,
 				C7D8AC751CA9A946006B4499 /* tmp-0.gif in Resources */,
 				C7D8AC761CA9A946006B4499 /* tmp-1.gif in Resources */,
 				C7D8AC771CA9A946006B4499 /* tmp-2.gif in Resources */,

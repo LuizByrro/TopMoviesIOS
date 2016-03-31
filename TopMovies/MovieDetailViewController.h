@@ -36,5 +36,9 @@
 
 @property (nonatomic, strong) UIAlertView *alertViewLoadingTrailers;
 @property (nonatomic, strong) UIAlertView *alertViewLoadingMovieInfo;
+@property (nonatomic, strong) UIAlertView *alertViewOpenYoutube;
+@property (nonatomic, strong) UIAlertView *alertViewMovieInfoError;
+
+@property (strong, nonatomic) NSIndexPath *selectedTrailerIndex;
 
 @end
